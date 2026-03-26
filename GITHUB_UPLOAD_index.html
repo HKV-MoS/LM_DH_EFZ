@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABU DH EFZ – T1: Ich beginne einen neuen Lebensabschnitt</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400&family=JetBrains+Mono:wght@400;600&display=swap');
+:root{--bg:#faf9f7;--surface:#fff;--surface-alt:#f4f1ed;--primary:#1a5276;--primary-light:#d4e6f1;--primary-glow:#2e86c1;--accent:#e67e22;--accent-light:#fdebd0;--success:#27ae60;--success-light:#d5f5e3;--error:#c0392b;--error-light:#fadbd8;--text:#2c3e50;--text-muted:#7f8c8d;--border:#e0ddd8;--lena:#8e44ad;--lena-light:#f4ecf7;--noel:#2980b9;--noel-light:#ebf5fb;--radius:12px;--radius-sm:8px;--shadow:0 2px 12px rgba(0,0,0,.06);--shadow-lg:0 8px 32px rgba(0,0,0,.1);--transition:.3s cubic-bezier(.4,0,.2,1)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:16px}
+.nav{position:sticky;top:0;z-index:100;background:var(--primary);padding:.6rem 1rem;box-shadow:0 2px 20px rgba(26,82,118,.3)}
+.nav-top{display:flex;align-items:center;gap:.8rem}
+.nav-logo{font-family:'Fraunces',serif;color:#fff;font-size:1rem;font-weight:600;white-space:nowrap}
+.nav-pills{display:flex;gap:.25rem;overflow-x:auto;flex:1;scrollbar-width:none;padding:.3rem 0}
+.nav-pills::-webkit-scrollbar{display:none}
+.nav-pill{padding:.35rem .65rem;border-radius:20px;font-size:.7rem;font-weight:500;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);cursor:pointer;white-space:nowrap;transition:var(--transition);border:none}
+.nav-pill:hover,.nav-pill.active{background:rgba(255,255,255,.25);color:#fff}
+.nav-pill.completed{background:rgba(39,174,96,.3);color:#d5f5e3}
+.progress-wrap{margin-top:.4rem;display:flex;align-items:center;gap:.5rem}
+.progress-bar{flex:1;height:4px;background:rgba(255,255,255,.15);border-radius:2px}
+.progress-fill{height:100%;background:var(--accent);border-radius:2px;transition:width .5s ease;width:0%}
+.progress-text{color:rgba(255,255,255,.6);font-size:.7rem;white-space:nowrap}
+.hero{background:linear-gradient(135deg,var(--primary) 0%,#1a6b8a 50%,var(--primary-glow) 100%);padding:3.5rem 2rem 2.5rem;text-align:center;color:#fff;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:50px;background:var(--bg);border-radius:50% 50% 0 0/100% 100% 0 0}
+.hero-badge{display:inline-block;background:var(--accent);color:#fff;padding:.25rem .8rem;border-radius:20px;font-size:.75rem;font-weight:700;letter-spacing:.05em;margin-bottom:.8rem}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(1.6rem,4.5vw,2.5rem);font-weight:600;margin-bottom:.4rem}
+.hero p{font-size:1rem;opacity:.85;max-width:600px;margin:0 auto}
+.container{max-width:860px;margin:0 auto;padding:1.5rem}
+.section{display:none}.section.active{display:block;animation:fadeIn .4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.card{background:var(--surface);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);margin-bottom:1.5rem;border:1px solid var(--border)}
+.comic-panel{background:linear-gradient(135deg,var(--noel-light) 0%,var(--lena-light) 100%);border-radius:var(--radius);padding:1.5rem;margin-bottom:1.5rem;border:2px dashed var(--border);position:relative}
+.speech-bubble{background:#fff;border-radius:16px;padding:.8rem 1rem;margin:.6rem 0;box-shadow:0 2px 8px rgba(0,0,0,.08);position:relative;font-style:italic}
+.speech-bubble::after{content:'';position:absolute;bottom:-8px;left:24px;border-left:10px solid transparent;border-right:10px solid transparent;border-top:10px solid #fff}
+.character-tag{display:inline-block;padding:.15rem .5rem;border-radius:12px;font-size:.7rem;font-weight:700;color:#fff;margin-bottom:.2rem}
+.character-tag.lena{background:var(--lena)}.character-tag.noel{background:var(--noel)}
+.comic-label{position:absolute;top:-10px;right:16px;background:var(--accent);color:#fff;padding:.15rem .7rem;border-radius:12px;font-size:.65rem;font-weight:700;letter-spacing:.03em}
+.theory-box{background:var(--surface);border-left:4px solid var(--primary);border-radius:0 var(--radius) var(--radius) 0;padding:1.3rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+.theory-box h3{color:var(--primary);font-family:'Fraunces',serif;margin-bottom:.6rem;font-size:1.1rem}
+.merksatz{background:var(--accent-light);border-radius:var(--radius);padding:.8rem 1rem;margin:1rem 0;display:flex;gap:.6rem;align-items:flex-start}
+.merksatz-icon{font-size:1.3rem;flex-shrink:0}.merksatz strong{color:var(--accent)}
+.info-box{background:var(--primary-light);border-radius:var(--radius);padding:.8rem 1rem;margin:1rem 0;display:flex;gap:.6rem;align-items:flex-start}
+.exercise{background:var(--surface);border-radius:var(--radius);padding:1.3rem;margin-bottom:1.5rem;box-shadow:var(--shadow);border:1px solid var(--border)}
+.exercise-header{display:flex;align-items:center;gap:.5rem;margin-bottom:.8rem;flex-wrap:wrap}
+.exercise-type{padding:.2rem .6rem;border-radius:20px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.type-luecke{background:#d5f5e3;color:#1e8449}.type-mc{background:#d4e6f1;color:#1a5276}.type-kprim{background:#fdebd0;color:#a04000}.type-zuordnung{background:#f4ecf7;color:#6c3483}.type-fall{background:#fadbd8;color:#922b21}.type-rechnung{background:#fef9e7;color:#7d6608}.type-portfolio{background:#d0ece7;color:#0e6655}
+.exercise h4{font-family:'Fraunces',serif;color:var(--text);font-size:1rem}
+.gap-input{display:inline-block;border:none;border-bottom:2px dashed var(--primary-glow);background:var(--primary-light);padding:.15rem .4rem;min-width:100px;font-family:'JetBrains Mono',monospace;font-size:.85rem;border-radius:4px;transition:var(--transition);text-align:center}
+.gap-input:focus{outline:none;border-bottom-color:var(--accent);background:var(--accent-light)}
+.gap-input.correct{background:var(--success-light);border-bottom-color:var(--success)}
+.gap-input.wrong{background:var(--error-light);border-bottom-color:var(--error)}
+.mc-option{display:flex;align-items:center;gap:.7rem;padding:.7rem .9rem;border:2px solid var(--border);border-radius:var(--radius-sm);margin-bottom:.4rem;cursor:pointer;transition:var(--transition);user-select:none;font-size:.95rem}
+.mc-option:hover{border-color:var(--primary-glow);background:var(--primary-light)}
+.mc-option.selected{border-color:var(--primary);background:var(--primary-light)}
+.mc-option.correct-answer{border-color:var(--success);background:var(--success-light)}
+.mc-option.wrong-answer{border-color:var(--error);background:var(--error-light)}
+.mc-radio{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:var(--transition)}
+.mc-option.selected .mc-radio{border-color:var(--primary);background:var(--primary)}
+.mc-option.selected .mc-radio::after{content:'';width:7px;height:7px;border-radius:50%;background:#fff}
+.kprim-row{display:flex;align-items:center;gap:.7rem;padding:.5rem 0;border-bottom:1px solid var(--border)}
+.kprim-row:last-child{border-bottom:none}
+.kprim-text{flex:1;font-size:.95rem}
+.kprim-toggles{display:flex;gap:.25rem}
+.kprim-btn{padding:.25rem .7rem;border-radius:6px;border:2px solid var(--border);background:#fff;cursor:pointer;font-weight:600;font-size:.75rem;transition:var(--transition)}
+.kprim-btn:hover{border-color:var(--text-muted)}
+.kprim-btn.sel-r{background:var(--success-light);border-color:var(--success);color:var(--success)}
+.kprim-btn.sel-f{background:var(--error-light);border-color:var(--error);color:var(--error)}
+.kprim-btn.ok{box-shadow:0 0 0 2px var(--success)}.kprim-btn.nok{box-shadow:0 0 0 2px var(--error)}
+.zuordnung-container{display:flex;gap:1rem;flex-wrap:wrap}
+.zuordnung-left,.zuordnung-right{flex:1;min-width:200px}
+.zuordnung-item{padding:.5rem .8rem;margin-bottom:.4rem;border-radius:var(--radius-sm);border:2px solid var(--border);background:#fff;cursor:pointer;transition:var(--transition);font-size:.85rem}
+.zuordnung-item:hover{border-color:var(--primary-glow)}
+.zuordnung-item.selected{border-color:var(--accent);background:var(--accent-light)}
+.zuordnung-item.matched{border-color:var(--success);background:var(--success-light);opacity:.7;pointer-events:none}
+.btn-check{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.2rem;border-radius:8px;border:none;background:var(--primary);color:#fff;font-weight:600;font-size:.85rem;cursor:pointer;transition:var(--transition);margin-top:.8rem}
+.btn-check:hover{background:var(--primary-glow);transform:translateY(-1px);box-shadow:0 4px 12px rgba(46,134,193,.3)}
+.btn-reset{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.2rem;border-radius:8px;border:2px solid var(--border);background:#fff;color:var(--text);font-weight:500;font-size:.85rem;cursor:pointer;margin-top:.8rem;margin-left:.4rem;transition:var(--transition)}
+.btn-reset:hover{border-color:var(--text-muted)}
+.btn-next{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;padding:.9rem;border-radius:var(--radius);border:none;background:linear-gradient(135deg,var(--accent),#d35400);color:#fff;font-weight:700;font-size:1rem;cursor:pointer;margin-top:2rem;transition:var(--transition)}
+.btn-next:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(230,126,34,.35)}
+.feedback{margin-top:.8rem;padding:.7rem .9rem;border-radius:var(--radius-sm);font-weight:500;font-size:.9rem;display:none}
+.feedback.show{display:block;animation:fadeIn .3s ease}
+.feedback.correct{background:var(--success-light);color:#1e8449}
+.feedback.wrong{background:var(--error-light);color:#922b21}
+.feedback.info{background:var(--primary-light);color:var(--primary)}
+.glossar-item{display:flex;gap:.6rem;padding:.6rem 0;border-bottom:1px solid var(--border);font-size:.9rem}
+.glossar-term{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--primary);min-width:140px;font-size:.85rem}
+.section-title{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--primary);margin-bottom:.4rem;padding-bottom:.4rem;border-bottom:3px solid var(--accent)}
+.section-subtitle{color:var(--text-muted);margin-bottom:1.5rem;font-size:.9rem}
+.score-panel{position:fixed;bottom:1rem;right:1rem;z-index:90;background:var(--surface);border-radius:var(--radius);padding:.6rem 1rem;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:.5rem;border:2px solid var(--accent)}
+.score-panel .score-num{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.1rem;color:var(--accent)}
+.calc-input{width:90px;border:2px solid var(--border);border-radius:6px;padding:.3rem;text-align:right;font-family:'JetBrains Mono',monospace;font-size:.9rem;transition:var(--transition)}
+.calc-input:focus{outline:none;border-color:var(--primary-glow)}
+.calc-input.correct{border-color:var(--success);background:var(--success-light)}
+.calc-input.wrong{border-color:var(--error);background:var(--error-light)}
+.calc-table{width:100%;border-collapse:collapse;margin:.8rem 0;font-size:.9rem}
+.calc-table td,.calc-table th{padding:.4rem .6rem;text-align:left;border-bottom:1px solid var(--border)}
+.calc-table th{background:var(--surface-alt);font-weight:600}
+.calc-table .right{text-align:right}
+.open-textarea{width:100%;min-height:80px;border:2px solid var(--border);border-radius:var(--radius-sm);padding:.7rem;font-family:'DM Sans',sans-serif;font-size:.9rem;resize:vertical;transition:var(--transition)}
+.open-textarea:focus{outline:none;border-color:var(--primary-glow)}
+.lp-toggle{background:var(--surface-alt);border:2px dashed var(--border);border-radius:var(--radius);padding:1rem;margin-top:2rem}
+.lp-toggle summary{cursor:pointer;font-weight:700;color:var(--primary);font-size:.9rem;user-select:none}
+.lp-toggle summary:hover{color:var(--primary-glow)}
+.lp-content{margin-top:.8rem;padding:.8rem;background:#fff;border-radius:var(--radius-sm);font-size:.9rem;line-height:1.8;border:1px solid var(--border)}
+.chapter-complete{background:var(--success-light);border-radius:var(--radius);padding:1rem;text-align:center;margin-top:1.5rem;border:2px solid var(--success)}
+.chapter-complete h3{color:var(--success);font-family:'Fraunces',serif}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.8rem 0}
+@media(max-width:640px){.container{padding:1rem}.hero{padding:2.5rem 1rem 2rem}.zuordnung-container{flex-direction:column}.score-panel{bottom:.5rem;right:.5rem;font-size:.8rem;padding:.4rem .7rem}.nav{padding:.4rem .7rem}.two-col{grid-template-columns:1fr}}
+@media print{.nav,.score-panel,.btn-check,.btn-reset,.btn-next{display:none}.section{display:block!important;page-break-inside:avoid}body{font-size:11pt}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+<div class="nav-top">
+<div class="nav-logo">📘 T1</div>
+<div class="nav-pills" id="navPills">
+<button class="nav-pill active" data-s="intro">🏠 Start</button>
+<button class="nav-pill" data-s="bildung">1 Bildung</button>
+<button class="nav-pill" data-s="beruf">2 Berufsperson</button>
+<button class="nav-pill" data-s="persrecht">3 Personenrecht</button>
+<button class="nav-pill" data-s="lehrvertrag">4 Lehrvertrag</button>
+<button class="nav-pill" data-s="lohn">5 Lohn & Budget</button>
+<button class="nav-pill" data-s="kaufvertrag">6 Kaufvertrag</button>
+<button class="nav-pill" data-s="partnerschaft">7 Partnerschaft</button>
+<button class="nav-pill" data-s="familie">8 Familienrecht</button>
+<button class="nav-pill" data-s="glossar">📖 Glossar</button>
+<button class="nav-pill" data-s="test">🎯 Test</button>
+</div>
+</div>
+<div class="progress-wrap">
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="progress-text" id="progressText">0 / 11 Kapitel</div>
+</div>
+</nav>
+
+<div class="hero">
+<div class="hero-badge">1. LEHRJAHR · SEMESTER 1 · 34 LEKTIONEN</div>
+<h1>T1: Ich beginne einen neuen Lebensabschnitt</h1>
+<p>Bildungslandschaft · Berufsperson · Personenrecht · Lehrvertrag · Lohn & Budget · Kaufvertrag · Partnerschaft · Familienrecht</p>
+</div>
+
+<div class="container">
+
+<!-- ═══ INTRO ═══ -->
+<div id="intro" class="section active">
+<h2 class="section-title">Willkommen im neuen Lebensabschnitt!</h2>
+<p class="section-subtitle">Lena & Noel starten ihre Lehre im Detailhandel – und du mit ihnen.</p>
+<div class="comic-panel">
+<div class="comic-label">📖 DEIN TEAM</div>
+<div style="display:flex;gap:1rem;flex-wrap:wrap">
+<div style="flex:1;min-width:200px">
+<span class="character-tag noel">🧑 NOEL · 17 · MediaMarkt</span>
+<div class="speech-bubble">Yo! Ich bin Noel – Elektronik ist mein Ding. Leider bin ich etwas chaotisch... Budgets? Formulare? Hilfe! 😅</div>
+</div>
+<div style="flex:1;min-width:200px">
+<span class="character-tag lena">👩 LENA · 16 · Migros</span>
+<div class="speech-bubble">Hallo! Ich bin Lena – zuverlässig, organisiert, aber manchmal zu schüchtern. Gemeinsam schaffen wir das! 💪</div>
+</div>
+</div>
+</div>
+<div class="card">
+<h3 style="font-family:'Fraunces',serif;color:var(--primary);margin-bottom:.6rem">Deine Reise durch T1</h3>
+<p>Navigiere mit den Tabs oben durch alle Kapitel. Jedes Kapitel enthält:</p>
+<div class="two-col" style="margin-top:1rem">
+<div style="background:var(--primary-light);padding:.8rem;border-radius:8px">📖 <strong>Mini-Case</strong> mit Lena oder Noel</div>
+<div style="background:var(--accent-light);padding:.8rem;border-radius:8px">📚 <strong>Theorie</strong> kompakt erklärt</div>
+<div style="background:var(--success-light);padding:.8rem;border-radius:8px">✍️ <strong>Interaktive Übungen</strong> mit Feedback</div>
+<div style="background:var(--lena-light);padding:.8rem;border-radius:8px">📋 <strong>Portfolio-Auftrag</strong> zur Reflexion</div>
+</div>
+</div>
+<button class="btn-next" onclick="goTo('bildung')">Los geht's → Bildungslandschaft Schweiz</button>
+</div>
+
+<!-- ═══ BILDUNGSLANDSCHAFT ═══ -->
+<div id="bildung" class="section">
+<h2 class="section-title">1 · Bildungslandschaft Schweiz</h2>
+<p class="section-subtitle">Wo stehst du im Schweizer Bildungssystem – und wohin kannst du gehen?</p>
+<div class="theory-box">
+<h3>📚 Das duale Bildungssystem</h3>
+<p>Die Schweiz hat ein <strong>duales Bildungssystem</strong>: Du lernst gleichzeitig im <strong>Betrieb</strong> (praktisch) und in der <strong>Berufsfachschule</strong> (theoretisch). Als Detailhandelsfachperson EFZ absolvierst du eine <strong>3-jährige Grundbildung</strong> mit 360 Lektionen ABU.</p>
+<p style="margin-top:.6rem">Drei Lernorte: <strong>Lehrbetrieb</strong> (3–4 Tage/Woche), <strong>Berufsfachschule</strong> (1–2 Tage/Woche), <strong>Überbetriebliche Kurse</strong> (ÜK).</p>
+</div>
+<div class="merksatz"><div class="merksatz-icon">🎯</div><div><strong>Kein Abschluss ohne Anschluss!</strong> Nach dem EFZ stehen dir offen: Berufsmaturität (BMS), Höhere Fachschule (HF), Berufsprüfung (BP) oder Fachhochschule (FH).</div></div>
+
+<div class="exercise">
+<div class="exercise-header"><span class="exercise-type type-zuordnung">Zuordnung</span><h4>Ordne die Abkürzungen richtig zu</h4></div>
+<p style="margin-bottom:.8rem;color:var(--text-muted);font-size:.85rem">Klicke links einen Begriff, dann rechts die Beschreibung.</p>
+<div class="zuordnung-container" id="z1">
+<div class="zuordnung-left">
+<div class="zuordnung-item" data-pair="a" onclick="selZ(this,'left','z1')">EFZ</div>
+<div class="zuordnung-item" data-pair="b" onclick="selZ(this,'left','z1')">EBA</div>
+<div class="zuordnung-item" data-pair="c" onclick="selZ(this,'left','z1')">BMS</div>
+<div class="zuordnung-item" data-pair="d" onclick="selZ(this,'left','z1')">ÜK</div>
+</div>
+<div class="zuordnung-right">
+<div class="zuordnung-item" data-pair="d" onclick="selZ(this,'right','z1')">Dritter Lernort neben Betrieb und Schule</div>
+<div class="zuordnung-item" data-pair="a" onclick="selZ(this,'right','z1')">3- oder 4-jährige berufliche Grundbildung</div>
+<div class="zuordnung-item" data-pair="c" onclick="selZ(this,'right','z1')">Ermöglicht Zugang zur Fachhochschule</div>
+<div class="zuordnung-item" data-pair="b" onclick="selZ(this,'right','z1')">2-jährige Grundbildung mit Attest</div>
+</div>
+</div>
+<div class="feedback" id="z1-feedback"></div>
+</div>
+
+<div class="exercise">
+<div class="exercise-header"><span class="exercise-type type-mc">Single Choice</span><h4>Wie viele Lektionen ABU hat ein/e DH EFZ-Lernende/r total?</h4></div>
+<div id="mc-bild1">
+<div class="mc-option" data-correct="false" onclick="selMC(this,'mc-bild1')"><div class="mc-radio"></div><span>120 Lektionen</span></div>
+<div class="mc-option" data-correct="true" onclick="selMC(this,'mc-bild1')"><div class="mc-radio"></div><span>360 Lektionen (120 pro Lehrjahr)</span></div>
+<div class="mc-option" data-correct="false" onclick="selMC(this,'mc-bild1')"><div class="mc-radio"></div><span>240 Lektionen</span></div>
+<div class="mc-option" data-correct="false" onclick="selMC(this,'mc-bild1')"><div class="mc-radio"></div><span>480 Lektionen</span></div>
+</div>
+<button class="btn-check" onclick="chkMC('mc-bild1')">✓ Prüfen</button>
+<button class="btn-reset" onclick="rstMC('mc-bild1')">↺ Reset</button>
+<div class="feedback" id="mc-bild1-feedback"></div>
+</div>
+
+<button class="btn-next" onclick="goTo('beruf')">Weiter → Ich bin Berufsperson</button>
+</div>
+
+<!-- ═══ BERUFSPERSON ═══ -->
+<div id="beruf" class="section">
+<h2 class="section-title">2 · Ich bin Berufsperson</h2>
+<p class="section-subtitle">Vom Schüler zur Fachperson – was ändert sich?</p>
+<div class="comic-panel"><div class="comic-label">📖 MINI-CASE</div>
+<span class="character-tag lena">👩 LENA</span>
+<div class="speech-bubble">Gestern hat mich eine Kundin «Fräulein» genannt und gefragt, ob sie «jemand Richtiges» sprechen könnte. Das hat mich verletzt... Bin ich jetzt eine richtige Berufsperson oder nicht? 😔</div>
+</div>
+<div class="theory-box"><h3>📚 Neue Rollen, neue Verantwortung</h3>
+<p>Mit dem Lehrbeginn übernimmst du gleichzeitig mehrere Rollen:</p>
+<div class="two-col">
+<div style="background:var(--noel-light);padding:.8rem;border-radius:8px"><strong>🏢 Im Betrieb:</strong> Lernende/r, Teammitglied, Verkäufer/in</div>
+<div style="background:var(--lena-light);padding:.8rem;border-radius:8px"><strong>🏫 In der Schule:</strong> Berufsfachschüler/in im ABU und BKU</div>
+<div style="background:var(--accent-light);padding:.8rem;border-radius:8px"><strong>💰 Finanziell:</strong> Lohnempfänger/in, Steuerpflichtige/r</div>
+<div style="background:var(--success-light);padding:.8rem;border-radius:8px"><strong>⚖️ Rechtlich:</strong> Vertragspartei (Lehrvertrag)</div>
+</div>
+</div>
+
+<div class="exercise"><div class="exercise-header"><span class="exercise-type type-kprim">K-Prim</span><h4>Aussagen zur Rolle als Berufsperson</h4></div>
+<div id="kp-beruf">
+<div class="kprim-row"><div class="kprim-text">Lernende haben die gleichen Rechte wie ausgelernte Angestellte.</div><div class="kprim-toggles"><button class="kprim-btn" data-correct="f" onclick="tglK(this,'r')">R</button><button class="kprim-btn" data-correct="f" onclick="tglK(this,'f')">F</button></div></div>
+<div class="kprim-row"><div class="kprim-text">Im Detailhandel gehört Samstagsarbeit zum Berufsalltag.</div><div class="kprim-toggles"><button class="kprim-btn" data-correct="r" onclick="tglK(this,'r')">R</button><button class="kprim-btn" data-correct="r" onclick="tglK(this,'f')">F</button></div></div>
+<div class="kprim-row"><div class="kprim-text">Lernende unter 18 dürfen keine Überstunden leisten.</div><div class="kprim-toggles"><button class="kprim-btn" data-correct="f" onclick="tglK(this,'r')">R</button><button class="kprim-btn" data-correct="f" onclick="tglK(this,'f')">F</button></div></div>
+<div class="kprim-row"><div class="kprim-text">Der Lehrbetrieb muss eine Berufsbildnerin / einen Berufsbildner bestimmen.</div><div class="kprim-toggles"><button class="kprim-btn" data-correct="r" onclick="tglK(this,'r')">R</button><button class="kprim-btn" data-correct="r" onclick="tglK(this,'f')">F</button></div></div>
+</div>
+<button class="btn-check" onclick="chkK('kp-beruf')">✓ Prüfen</button><button class="btn-reset" onclick="rstK('kp-beruf')">↺ Reset</button>
+<div class="feedback" id="kp-beruf-feedback"></div>
+</div>
+
+<div class="exercise"><div class="exercise-header"><span class="exercise-type type-portfolio">Portfolio</span><h4>Reflexion: Meine neue Rolle</h4></div>
+<p>Beschreibe in 5–8 Sätzen: Was hat sich seit deinem Lehrbeginn verändert? Welche Rolle fällt dir leicht, welche schwer?</p>
+<textarea class="open-textarea" placeholder="Meine Reflexion..."></textarea>
+</div>
+<button class="btn-next" onclick="goTo('persrecht')">Weiter → Personenrecht</button>
+</div>
+
+<!-- ═══ PERSONENRECHT ═══ -->
+<div id="persrecht" class="section">
+<h2 class="section-title">3 · Personenrecht</h2>
+<p class="section-subtitle">Wer darf was? Rechtsfähigkeit, Handlungsfähigkeit und Urteilsfähigkeit.</p>
+<div class="comic-panel"><div class="comic-label">📖 MINI-CASE</div>
+<span class="character-tag noel">🧑 NOEL</span>
+<div class="speech-bubble">Ich will mir ein Gaming-Setup für 1'200 Franken kaufen – auf Raten! Der Verkäufer sagt, ich brauche die Unterschrift meiner Eltern. Wieso? Ich verdiene doch mein eigenes Geld! 😤</div>
+</div>
+<div class="theory-box"><h3>📚 Die drei Schlüsselbegriffe</h3>
+<table class="calc-table">
+<tr><th>Begriff</th><th>Bedeutung</th><th>Voraussetzungen</th></tr>
+<tr><td><strong>Rechtsfähigkeit</strong></td><td>Rechte und Pflichten haben</td><td>Jeder Mensch ab Geburt (ZGB Art. 11)</td></tr>
+<tr><td><strong>Urteilsfähigkeit</strong></td><td>Vernünftig handeln können</td><td>Wer nicht Kind, geisteskrank oder betrunken ist (ZGB Art. 16)</td></tr>
+<tr><td><strong>Handlungsfähigkeit</strong></td><td>Selbst Rechte erwerben und Pflichten eingehen</td><td>Volljährig (18+) UND urteilsfähig (ZGB Art. 12–13)</td></tr>
+</table>
+</div>
+<div class="merksatz"><div class="merksatz-icon">⚖️</div><div><strong>Für Noel heisst das:</strong> Mit 17 ist er noch minderjährig → er ist <em>beschränkt handlungsfähig</em>. Für Ratenkäufe (= Verpflichtungen) braucht er die Zustimmung der gesetzlichen Vertretung!</div></div>
+
+<div class="exercise"><div class="exercise-header"><span class="exercise-type type-luecke">Lückentext</span><h4>Ergänze die Begriffe</h4></div>
+<p style="line-height:2.4">
+Jeder Mensch ist ab <input type="text" class="gap-input" data-answer="Geburt" placeholder="?" size="10"> rechtsfähig.
+Die Handlungsfähigkeit setzt <input type="text" class="gap-input" data-answer="Volljährigkeit" placeholder="?" size="14"> und
+<input type="text" class="gap-input" data-answer="Urteilsfähigkeit" placeholder="?" size="16"> voraus.
+Volljährig ist man in der Schweiz ab <input type="text" class="gap-input" data-answer="18" placeholder="?" size="4"> Jahren.
+Minderjährige sind <input type="text" class="gap-input" data-answer="beschränkt" placeholder="?" size="12"> handlungsfähig.
+</p>
+<button class="btn-check" onclick="chkGap(this)">✓ Prüfen</button><button class="btn-reset" onclick="rstGap(this)">↺ Reset</button>
+<div class="feedback"></div>
+</div>
+
+<div class="exercise"><div class="exercise-header"><span class="exercise-type type-fall">Mini-Case</span><h4>Wer darf was?</h4></div>
+<p><strong>Fall A:</strong> Lena (16) kauft sich in der Pause ein Sandwich für CHF 5.50. Braucht sie die Erlaubnis ihrer Mutter?</p>
+<textarea class="open-textarea" placeholder="Deine Antwort..."></textarea>
+<p style="margin-top:.8rem"><strong>Fall B:</strong> Noel (17) möchte ein Handy-Abo für CHF 59.–/Monat abschliessen. Darf er das allein?</p>
+<textarea class="open-textarea" placeholder="Deine Antwort..."></textarea>
+<button class="btn-check" onclick="showSol('sol-pers')">💡 Lösung</button>
+<div class="feedback info" id="sol-pers"><strong>Fall A:</strong> Ja – alltägliche Geschäfte mit dem Taschengeld/Lohn sind erlaubt (ZGB Art. 19 Abs. 2). <strong>Fall B:</strong> Nein – ein laufender Vertrag über 2 Jahre ist keine geringfügige Angelegenheit. Er braucht die Zustimmung seiner gesetzlichen Vertretung.</div>
+</div>
+<button class="btn-next" onclick="goTo('lehrvertrag')">Weiter → Lehrvertrag</button>
+</div>
+
+<!-- ═══ LEHRVERTRAG ═══ -->
+<div id="lehrvertrag" class="section">
+<h2 class="section-title">4 · Der Lehrvertrag</h2>
+<p class="section-subtitle">Dein wichtigstes Dokument – versteh, was du unterschreibst.</p>
+<div class="comic-panel"><div class="comic-label">📖 MINI-CASE</div>
+<span class="character-tag noel">🧑 NOEL</span>
+<div class="speech-bubble">Ich bin seit 2 Monaten in der Lehre und war schon 3× zu spät. Mein Chef sagt: «Noel, noch einmal und wir reden über Konsequenzen.» Meine Mutter meint, die dürfen mich nicht rauswerfen... Stimmt das? 😰</div>
+</div>
+<div class="theory-box"><h3>📚 Der Lehrvertrag im Detail</h3>
+<p>Der <strong>Lehrvertrag</strong> (OR Art. 344–346a) ist ein besonderer, <strong>befristeter Arbeitsvertrag</strong>. Drei Parteien: Lehrbetrieb, Lernende/r, gesetzliche Vertretung. Muss vom <strong>Berufsbildungsamt</strong> genehmigt werden.</p>
+<table class="calc-table" style="margin-top:.8rem">
+<tr><th>Regelung</th><th>Details</th></tr>
+<tr><td>Probezeit</td><td>1–3 Monate (verlängerbar auf max. 6)</td></tr>
+<tr><td>Kündigung Probezeit</td><td>7 Tage Frist, von beiden Seiten</td></tr>
+<tr><td>Kündigung nach Probezeit</td><td>Nur aus wichtigem Grund (OR Art. 346)</td></tr>
+<tr><td>Ferien</td><td>Mind. 5 Wochen (unter 20 Jahre)</td></tr>
+<tr><td>Überstunden</td><td>Nur ausnahmsweise, altersgerecht, kompensiert</td></tr>
+<tr><td>Lohn</td><td>Empfehlung durch Branchenverbände</td></tr>
+</table>
+</div>
+<div class="merksatz"><div class="merksatz-icon">⚖️</div><div><strong>Noels Mutter irrt:</strong> Während der Probezeit kann der Lehrvertrag von beiden Seiten mit 7 Tagen Frist aufgelöst werden. Zu spät kommen kann ein Kündigungsgrund sein!</div></div>
+
+<div class="exercise"><div class="exercise-header"><span class="exercise-type type-luecke">Lückentext</span><h4>Ergänze die Fakten zum Lehrvertrag</h4></div>
+<p style="line-height:2.4">
+Der Lehrvertrag ist ein <input type="text" class="gap-input" data-answer="befristeter" placeholder="?" size="12"> Arbeitsvertrag.
+Die Probezeit dauert mindestens <input type="text" class="gap-input" data-answer="1" placeholder="?" size="3"> und höchstens
+<input type="text" class="gap-input" data-answer="3" placeholder="?" size="3"> Monate.
+Während der Probezeit beträgt die Kündigungsfrist <input type="text" class="gap-input" data-answer="7" placeholder="?" size="3"> Tage.
+Lernende unter 20 haben Anspruch auf <input type="text" class="gap-input" data-answer="5" placeholder="?" size="3"> Wochen Ferien.
+</p>
+<button class="btn-check" onclick="chkGap(this)">✓ Prüfen</button><button class="btn-reset" onclick="rstGap(this)">↺ Reset</button>
+<div class="feedback"></div>
+</div>
+
+<div class="exercise"><div class="exercise-header"><span class="exercise-type type-kprim">K-Prim</span><h4>Richtig oder Falsch?</h4></div>
+<div id="kp-lv">
+<div class="kprim-row"><div class="kprim-text">Der Lehrvertrag muss schriftlich abgeschlossen werden.</div><div class="kprim-toggles"><button class="kprim-btn" data-correct="r" onclick="tglK(this,'r')">R</button><button class="kprim-btn" data-correct="r" onclick="tglK(this,'f')">F</button></div></div>
+<div class="kprim-row"><div class="kprim-text">Nach der Probezeit kann der Betrieb jederzeit kündigen.</div><div class="kprim-toggles"><button class="kprim-btn" data-correct="f" onclick="tglK(this,'r')">R</button><button class="kprim-btn" data-correct="f" onclick="tglK(this,'f')">F</button></div></div>
+<div class="kprim-row"><div class="kprim-text">Der Lehrvertrag muss vom kantonalen Amt genehmigt werden.</div><div class="kprim-toggles"><button class="kprim-btn" data-correct="r" onclick="tglK(this,'r')">R</button><button class="kprim-btn" data-correct="r" onclick="tglK(this,'f')">F</button></div></div>
+<div class="kprim-row"><div class="kprim-text">Die Probezeit kann auf maximal 12 Monate verlängert werden.</div><div class="kprim-toggles"><button class="kprim-btn" data-correct="f" onclick="tglK(this,'r')">R</button><button class="kprim-btn" data-correct="f" onclick="tglK(this,'f')">F</button></div></div>
+</div>
+<button class="btn-check" onclick="chkK('kp-lv')">✓ Prüfen</button><button class="btn-reset" onclick="rstK('kp-lv')">↺ Reset</button>
+<div class="feedback" id="kp-lv-feedback"></div>
+</div>
+
+<div class="exercise"><div class="exercise-header"><span class="exercise-type type-portfolio">Portfolio</span><h4>Dein eigener Lehrvertrag</h4></div>
+<p>Lies deinen eigenen Lehrvertrag durch und beantworte:</p>
+<p style="margin-top:.5rem"><strong>1.</strong> Wie lange ist deine Probezeit?</p>
+<textarea class="open-textarea" rows="2" placeholder="..."></textarea>
+<p style="margin-top:.5rem"><strong>2.</strong> Wie viele Ferienwochen hast du?</p>
+<textarea class="open-textarea" rows="2" placeholder="..."></textarea>
+<p style="margin-top:.5rem"><strong>3.</strong> Was hast du beim Durchlesen entdeckt, das du vorher nicht wusstest?</p>
+<textarea class="open-textarea" placeholder="..."></textarea>
+</div>
+<button class="btn-next" onclick="goTo('lohn')">Weiter → Lohn & Budget</button>
+</div>
+
+<!-- ═══ LOHN & BUDGET ═══ -->
+<div id="lohn" class="section">
+<h2 class="section-title">5 · Lohn, Budget & Schulden</h2>
+<p class="section-subtitle">Dein erstes Geld – lerne es klug zu verwalten.</p>
+<div class="comic-panel"><div class="comic-label">📖 MINI-CASE</div>
+<span class="character-tag lena">👩 LENA</span>
+<div class="speech-bubble">Meine erste Lohnabrechnung! Aber... wieso steht da nur 850 Franken statt 1'000? Wo sind die anderen 150 Franken hin?! 😱</div>
+</div>
+<div class="theory-box"><h3>📚 Von Brutto zu Netto</h3>
+<p>Der <strong>Bruttolohn</strong> ist dein vereinbarter Lohn. Davon werden <strong>Sozialversicherungsbeiträge</strong> abgezogen:</p>
+<table class="calc-table">
+<tr><th>Abzug</th><th class="right">Arbeitnehmer-Anteil</th></tr>
+<tr><td>AHV / IV / EO</td><td class="right">5.3 %</td></tr>
+<tr><td>ALV</td><td class="right">1.1 %</td></tr>
+<tr><td>NBU (ca.)</td><td class="right">1.5 %</td></tr>
+<tr><td>BVG (ab 25 J.)</td><td class="right">variabel</td></tr>
+<tr style="font-weight:700"><td>= Nettolohn</td><td class="right">Brutto − alle Abzüge</td></tr>
+</table>
+</div>
+
+<div class="exercise"><div class="exercise-header"><span class="exercise-type type-rechnung">Rechnung</span><h4>Berechne Lenas Nettolohn (Brutto: CHF 1'000.–)</h4></div>
+<table class="calc-table" style="max-width:450px">
+<tr><td>Bruttolohn</td><td class="right">CHF 1'000.00</td></tr>
+<tr><td>− AHV/IV/EO (5.3%)</td><td class="right">CHF <input type="text" class="calc-input" data-answer="53" placeholder="?" id="c-ahv"></td></tr>
+<tr><td>− ALV (1.1%)</td><td class="right">CHF <input type="text" class="calc-input" data-answer="11" placeholder="?" id="c-alv"></td></tr>
+<tr><td>− NBU (1.5%)</td><td class="right">CHF <input type="text" class="calc-input" data-answer="15" placeholder="?" id="c-nbu"></td></tr>
+<tr style="font-weight:700;background:var(--surface-alt)"><td>= Nettolohn</td><td class="right">CHF <input type="text" class="calc-input" data-answer="921" placeholder="?" id="c-net" style="font-weight:700"></td></tr>
+</table>
+<button class="btn-check" onclick="chkCalc(['c-ahv','c-alv','c-nbu','c-net'],[53,11,15,921])">✓ Prüfen</button>
+<button class="btn-reset" onclick="rstCalc(['c-ahv','c-alv','c-nbu','c-net'])">↺ Reset</button>
+<div class="feedback" id="calc1-feedback"></div>
+</div>
+
+<div class="exercise"><div class="exercise-header"><span class="exercise-type type-mc">Single Choice</span><h4>Was gehört zu den Fixkosten?</h4></div>
+<div id="mc-fix"><div class="mc-option" data-correct="false" onclick="selMC(this,'mc-fix')"><div class="mc-radio"></div><span>Kinobesuch</span></div>
+<div class="mc-option" data-correct="true" onclick="selMC(this,'mc-fix')"><div class="mc-radio"></div><span>Krankenkassenprämie</span></div>
+<div class="mc-option" data-correct="false" onclick="selMC(this,'mc-fix')"><div class="mc-radio"></div><span>Geburtstagsgeschenk</span></div>
+<div class="mc-option" data-correct="false" onclick="selMC(this,'mc-fix')"><div class="mc-radio"></div><span>Neue Sneakers</span></div></div>
+<button class="btn-check" onclick="chkMC('mc-fix')">✓ Prüfen</button><button class="btn-reset" onclick="rstMC('mc-fix')">↺ Reset</button>
+<div class="feedback" id="mc-fix-feedback"></div>
+</div>
+
+<div class="merksatz"><div class="merksatz-icon">⚠️</div><div><strong>Schulden vermeiden:</strong> Die häufigsten Schuldenfallen für Lernende: Handy-Abos, Online-Shopping auf Rechnung, «Buy now, pay later», Leasing. Erstelle immer zuerst ein Budget!</div></div>
+
+<div class="exercise"><div class="exercise-header"><span class="exercise-type type-portfolio">Portfolio</span><h4>Mein persönliches Budget</h4></div>
+<p>Erstelle dein eigenes Monatsbudget. Nutze die Vorlage von <strong>budgetberatung.ch</strong> oder fülle die Felder hier aus:</p>
+<table class="calc-table" style="max-width:400px">
+<tr><th>Posten</th><th class="right">CHF / Monat</th></tr>
+<tr><td>Nettolohn</td><td class="right"><input type="text" class="calc-input" placeholder="..."></td></tr>
+<tr><td>− Krankenkasse</td><td class="right"><input type="text" class="calc-input" placeholder="..."></td></tr>
+<tr><td>− Handy</td><td class="right"><input type="text" class="calc-input" placeholder="..."></td></tr>
+<tr><td>− ÖV / Mobilität</td><td class="right"><input type="text" class="calc-input" placeholder="..."></td></tr>
+<tr><td>− Essen / Verpflegung</td><td class="right"><input type="text" class="calc-input" placeholder="..."></td></tr>
+<tr><td>− Ausgang / Freizeit</td><td class="right"><input type="text" class="calc-input" placeholder="..."></td></tr>
+<tr><td>− Sparen</td><td class="right"><input type="text" class="calc-input" placeholder="..."></td></tr>
+<tr style="font-weight:700;background:var(--surface-alt)"><td>= Rest</td><td class="right"><input type="text" class="calc-input" placeholder="..." style="font-weight:700"></td></tr>
+</table>
+</div>
+<button class="btn-next" onclick="goTo('kaufvertrag')">Weiter → Kaufvertrag</button>
+</div>
+
+<!-- ═══ KAUFVERTRAG ═══ -->
+<div id="kaufvertrag" class="section">
+<h2 class="section-title">6 · Der Kaufvertrag</h2>
+<p class="section-subtitle">Jeden Tag verkaufst du Produkte – was gilt rechtlich?</p>
+<div class="comic-panel"><div class="comic-label">📖 MINI-CASE</div>
+<span class="character-tag noel">🧑 NOEL</span>
+<div class="speech-bubble">Ein Kunde bringt einen Kopfhörer zurück. «Funktioniert nicht – Geld zurück!» Mein Chef sagt, ich soll das klären. Äh... Gewährleistung? Garantie? Was ist der Unterschied nochmal? 😅</div>
+</div>
+<div class="theory-box"><h3>📚 Kaufvertrag – Pflichten und Mängelrechte</h3>
+<div class="two-col">
+<div style="background:var(--noel-light);padding:.8rem;border-radius:8px"><strong>Verkäufer/in:</strong><br>• Ware übergeben<br>• Mangelfreie Ware liefern<br>• Gewährleistung</div>
+<div style="background:var(--lena-light);padding:.8rem;border-radius:8px"><strong>Käufer/in:</strong><br>• Ware annehmen<br>• Preis bezahlen<br>• Mängel sofort rügen</div>
+</div>
+<div style="margin-top:1rem;background:var(--surface-alt);border-radius:8px;padding:.8rem">
+<strong>Mängelrechte des Käufers (OR Art. 197 ff.):</strong><br>
+<strong>Wandelung</strong> = Rückgabe gegen Erstattung | <strong>Minderung</strong> = Preisreduktion | <strong>Ersatzlieferung</strong> = neues Produkt
+</div>
+</div>
+<div class="merksatz"><div class="merksatz-icon">⚠️</div><div><strong>Gewährleistung ≠ Garantie!</strong> Gewährleistung = gesetzlich (OR 197 ff.). Garantie = freiwillig vom Hersteller/Verkäufer. Kulanz = freiwilliges Entgegenkommen ohne Rechtsanspruch.</div></div>
+
+<div class="exercise"><div class="exercise-header"><span class="exercise-type type-zuordnung">Zuordnung</span><h4>Ordne die Begriffe zu</h4></div>
+<div class="zuordnung-container" id="z2">
+<div class="zuordnung-left">
+<div class="zuordnung-item" data-pair="a" onclick="selZ(this,'left','z2')">Wandelung</div>
+<div class="zuordnung-item" data-pair="b" onclick="selZ(this,'left','z2')">Minderung</div>
+<div class="zuordnung-item" data-pair="c" onclick="selZ(this,'left','z2')">Garantie</div>
+<div class="zuordnung-item" data-pair="d" onclick="selZ(this,'left','z2')">Kulanz</div>
+</div>
+<div class="zuordnung-right">
+<div class="zuordnung-item" data-pair="c" onclick="selZ(this,'right','z2')">Freiwillige Zusicherung des Herstellers</div>
+<div class="zuordnung-item" data-pair="d" onclick="selZ(this,'right','z2')">Freiwilliges Entgegenkommen ohne Pflicht</div>
+<div class="zuordnung-item" data-pair="a" onclick="selZ(this,'right','z2')">Rückgabe der Ware gegen Erstattung</div>
+<div class="zuordnung-item" data-pair="b" onclick="selZ(this,'right','z2')">Herabsetzung des Kaufpreises</div>
+</div>
+</div>
+<div class="feedback" id="z2-feedback"></div>
+</div>
+<button class="btn-next" onclick="goTo('partnerschaft')">Weiter → Partnerschaft & Ehe</button>
+</div>
+
+<!-- ═══ PARTNERSCHAFT ═══ -->
+<div id="partnerschaft" class="section">
+<h2 class="section-title">7 · Partnerschaft, Ehe & Konkubinat</h2>
+<p class="section-subtitle">Zusammenleben – welche Formen gibt es und was gilt rechtlich?</p>
+<div class="comic-panel"><div class="comic-label">📖 MINI-CASE</div>
+<span class="character-tag lena">👩 LENA</span>
+<div class="speech-bubble">Meine Schwester Sara zieht mit ihrem Freund zusammen. Meine Mutter warnt: «Im Konkubinat bist du nicht geschützt!» Sara: «Heiraten? Total altmodisch!» Wer hat Recht? 🤷‍♀️</div>
+</div>
+<div class="theory-box"><h3>📚 Formen des Zusammenlebens</h3>
+<table class="calc-table">
+<tr><th></th><th>Konkubinat</th><th>Ehe</th></tr>
+<tr><td><strong>Rechtsgrundlage</strong></td><td>Keine spezielle</td><td>ZGB Art. 90 ff.</td></tr>
+<tr><td><strong>Güterrecht</strong></td><td>Nein (alles getrennt)</td><td>Ja (Errungenschaftsbeteiligung)</td></tr>
+<tr><td><strong>Erbrecht</strong></td><td>Kein gesetzliches Erbrecht</td><td>Gesetzlicher Erbanspruch</td></tr>
+<tr><td><strong>Unterhalt bei Trennung</strong></td><td>Kein Anspruch</td><td>Möglicher Anspruch</td></tr>
+<tr><td><strong>Steuern</strong></td><td>Getrennt veranlagt</td><td>Gemeinsam veranlagt</td></tr>
+</table>
+</div>
+
+<div class="exercise"><div class="exercise-header"><span class="exercise-type type-kprim">K-Prim</span><h4>Konkubinat, Ehe, Scheidung</h4></div>
+<div id="kp-part">
+<div class="kprim-row"><div class="kprim-text">Im Konkubinat haben Partner automatisch Erbrecht.</div><div class="kprim-toggles"><button class="kprim-btn" data-correct="f" onclick="tglK(this,'r')">R</button><button class="kprim-btn" data-correct="f" onclick="tglK(this,'f')">F</button></div></div>
+<div class="kprim-row"><div class="kprim-text">Bei einer Ehe gilt standardmässig die Errungenschaftsbeteiligung.</div><div class="kprim-toggles"><button class="kprim-btn" data-correct="r" onclick="tglK(this,'r')">R</button><button class="kprim-btn" data-correct="r" onclick="tglK(this,'f')">F</button></div></div>
+<div class="kprim-row"><div class="kprim-text">Eine Ehe kann nur durch ein Gericht geschieden werden.</div><div class="kprim-toggles"><button class="kprim-btn" data-correct="r" onclick="tglK(this,'r')">R</button><button class="kprim-btn" data-correct="r" onclick="tglK(this,'f')">F</button></div></div>
+<div class="kprim-row"><div class="kprim-text">Ein Konkubinatsvertrag kann die Rechte der Partner regeln.</div><div class="kprim-toggles"><button class="kprim-btn" data-correct="r" onclick="tglK(this,'r')">R</button><button class="kprim-btn" data-correct="r" onclick="tglK(this,'f')">F</button></div></div>
+</div>
+<button class="btn-check" onclick="chkK('kp-part')">✓ Prüfen</button><button class="btn-reset" onclick="rstK('kp-part')">↺ Reset</button>
+<div class="feedback" id="kp-part-feedback"></div>
+</div>
+<button class="btn-next" onclick="goTo('familie')">Weiter → Familienrecht</button>
+</div>
+
+<!-- ═══ FAMILIENRECHT ═══ -->
+<div id="familie" class="section">
+<h2 class="section-title">8 · Familienrecht</h2>
+<p class="section-subtitle">Scheidung, Sorgerecht, Geschlechterrollen – das Familienrecht im Alltag.</p>
+<div class="theory-box"><h3>📚 Scheidung – Ablauf und Folgen</h3>
+<p>Eine Scheidung kann <strong>auf gemeinsames Begehren</strong> (einvernehmlich) oder <strong>auf Klage</strong> (nach 2 Jahren Trennung) erfolgen. Geregelt werden: Güterteilung, Sorgerecht, Unterhalt, Vorsorgeausgleich.</p>
+<p style="margin-top:.5rem"><strong>Wichtig:</strong> Seit 2014 gilt in der Schweiz das <strong>gemeinsame Sorgerecht</strong> als Regelfall – auch nach einer Scheidung.</p>
+</div>
+
+<div class="exercise"><div class="exercise-header"><span class="exercise-type type-fall">Mini-Case</span><h4>Fall: Familie Meier</h4></div>
+<p>Thomas und Sandra Meier lassen sich nach 12 Jahren Ehe scheiden. Sie haben zwei Kinder (8 und 11). Sandra hat während der Ehe 60% gearbeitet, Thomas 100%. Sie haben ein gemeinsames Haus und Ersparnisse.</p>
+<p style="margin-top:.5rem"><strong>a)</strong> Welche Scheidungsform ist hier wahrscheinlich sinnvoller?</p>
+<textarea class="open-textarea" rows="2" placeholder="..."></textarea>
+<p style="margin-top:.5rem"><strong>b)</strong> Was passiert mit dem Sorgerecht für die Kinder?</p>
+<textarea class="open-textarea" rows="2" placeholder="..."></textarea>
+<p style="margin-top:.5rem"><strong>c)</strong> Was bedeutet «Errungenschaftsbeteiligung» für die Güterteilung?</p>
+<textarea class="open-textarea" placeholder="..."></textarea>
+<button class="btn-check" onclick="showSol('sol-fam')">💡 Lösung</button>
+<div class="feedback info" id="sol-fam"><strong>a)</strong> Scheidung auf gemeinsames Begehren – schneller, günstiger, weniger belastend für die Kinder. <strong>b)</strong> Gemeinsames Sorgerecht ist der Regelfall. Die Kinder leben hauptsächlich bei einem Elternteil (Obhut), der andere hat Besuchsrecht. <strong>c)</strong> Was während der Ehe erarbeitet wurde (Errungenschaft), wird hälftig geteilt. Was vor der Ehe vorhanden war (Eigengut), bleibt beim jeweiligen Partner.</div>
+</div>
+
+<div class="exercise"><div class="exercise-header"><span class="exercise-type type-portfolio">Portfolio</span><h4>Reflexion: Geschlechterrollen</h4></div>
+<p>Denke über die Rollenverteilung in deiner Familie oder deinem Umfeld nach:</p>
+<p style="margin-top:.5rem"><strong>1.</strong> Wie sind Aufgaben bei euch zu Hause verteilt? Wer verdient Geld, wer kümmert sich um den Haushalt?</p>
+<textarea class="open-textarea" placeholder="..."></textarea>
+<p style="margin-top:.5rem"><strong>2.</strong> Wie stellst du dir eine partnerschaftliche Rollenverteilung in deiner Zukunft vor?</p>
+<textarea class="open-textarea" placeholder="..."></textarea>
+</div>
+<button class="btn-next" onclick="goTo('glossar')">Weiter → Glossar</button>
+</div>
+
+<!-- ═══ GLOSSAR ═══ -->
+<div id="glossar" class="section">
+<h2 class="section-title">📖 Glossar T1</h2>
+<p class="section-subtitle">Alle Fachbegriffe auf einen Blick.</p>
+<div class="card">
+<div class="glossar-item"><div class="glossar-term">AHV</div><div>Alters- und Hinterlassenenversicherung (1. Säule)</div></div>
+<div class="glossar-item"><div class="glossar-term">ALV</div><div>Arbeitslosenversicherung</div></div>
+<div class="glossar-item"><div class="glossar-term">Bruttolohn</div><div>Vereinbarter Lohn vor Abzügen</div></div>
+<div class="glossar-item"><div class="glossar-term">BVG</div><div>Berufliche Vorsorge / Pensionskasse (2. Säule)</div></div>
+<div class="glossar-item"><div class="glossar-term">EBA</div><div>Eidg. Berufsattest (2-jährige Grundbildung)</div></div>
+<div class="glossar-item"><div class="glossar-term">EFZ</div><div>Eidg. Fähigkeitszeugnis (3-/4-jährige Grundbildung)</div></div>
+<div class="glossar-item"><div class="glossar-term">Errungenschaft</div><div>Vermögen, das während der Ehe erarbeitet wird</div></div>
+<div class="glossar-item"><div class="glossar-term">Fixkosten</div><div>Monatlich gleichbleibende Ausgaben</div></div>
+<div class="glossar-item"><div class="glossar-term">Garantie</div><div>Freiwillige Zusicherung des Herstellers/Verkäufers</div></div>
+<div class="glossar-item"><div class="glossar-term">Gewährleistung</div><div>Gesetzliche Mängelhaftung (OR Art. 197 ff.)</div></div>
+<div class="glossar-item"><div class="glossar-term">Handlungsfähigkeit</div><div>Fähigkeit, selbst Rechte/Pflichten zu begründen (18+ und urteilsfähig)</div></div>
+<div class="glossar-item"><div class="glossar-term">Konkubinat</div><div>Zusammenleben ohne Trauschein</div></div>
+<div class="glossar-item"><div class="glossar-term">Kulanz</div><div>Freiwilliges Entgegenkommen ohne Rechtsanspruch</div></div>
+<div class="glossar-item"><div class="glossar-term">Lehrvertrag</div><div>Befristeter Arbeitsvertrag (OR Art. 344 ff.)</div></div>
+<div class="glossar-item"><div class="glossar-term">Minderung</div><div>Herabsetzung des Kaufpreises bei Mängeln</div></div>
+<div class="glossar-item"><div class="glossar-term">NBU</div><div>Nichtberufsunfall-Versicherung</div></div>
+<div class="glossar-item"><div class="glossar-term">Nettolohn</div><div>Lohn nach Abzug aller Beiträge</div></div>
+<div class="glossar-item"><div class="glossar-term">Probezeit</div><div>1–3 Monate (max. 6), erleichterte Kündigung</div></div>
+<div class="glossar-item"><div class="glossar-term">Rechtsfähigkeit</div><div>Fähigkeit, Rechte und Pflichten zu haben (ab Geburt)</div></div>
+<div class="glossar-item"><div class="glossar-term">Urteilsfähigkeit</div><div>Fähigkeit, vernunftgemäss zu handeln (ZGB Art. 16)</div></div>
+<div class="glossar-item"><div class="glossar-term">Wandelung</div><div>Rückgängigmachung des Kaufs bei Mängeln</div></div>
+</div>
+<button class="btn-next" onclick="goTo('test')">Weiter → 🎯 Abschlusstest</button>
+</div>
+
+<!-- ═══ TEST ═══ -->
+<div id="test" class="section">
+<h2 class="section-title">🎯 Abschlusstest T1</h2>
+<p class="section-subtitle">Teste dein Wissen – 20% Theorie, 80% Handlungswissen (wie am QV).</p>
+
+<div class="exercise"><div class="exercise-header"><span class="exercise-type type-mc">Frage 1</span><h4>Probezeit im Lehrvertrag</h4></div>
+<div id="t-mc1">
+<div class="mc-option" data-correct="false" onclick="selMC(this,'t-mc1')"><div class="mc-radio"></div><span>Die Probezeit beträgt immer genau 3 Monate.</span></div>
+<div class="mc-option" data-correct="true" onclick="selMC(this,'t-mc1')"><div class="mc-radio"></div><span>Die Probezeit dauert 1–3 Monate und kann auf max. 6 verlängert werden.</span></div>
+<div class="mc-option" data-correct="false" onclick="selMC(this,'t-mc1')"><div class="mc-radio"></div><span>Während der Probezeit kann nicht gekündigt werden.</span></div>
+<div class="mc-option" data-correct="false" onclick="selMC(this,'t-mc1')"><div class="mc-radio"></div><span>Die Probezeit gilt nur für Lernende, nicht für den Betrieb.</span></div>
+</div>
+<button class="btn-check" onclick="chkMC('t-mc1')">✓ Prüfen</button><button class="btn-reset" onclick="rstMC('t-mc1')">↺ Reset</button>
+<div class="feedback" id="t-mc1-feedback"></div>
+</div>
+
+<div class="exercise"><div class="exercise-header"><span class="exercise-type type-kprim">Frage 2 – K-Prim</span><h4>Personenrecht</h4></div>
+<div id="t-kp1">
+<div class="kprim-row"><div class="kprim-text">Ein 16-Jähriger darf mit seinem Lohn ein Mittagessen kaufen.</div><div class="kprim-toggles"><button class="kprim-btn" data-correct="r" onclick="tglK(this,'r')">R</button><button class="kprim-btn" data-correct="r" onclick="tglK(this,'f')">F</button></div></div>
+<div class="kprim-row"><div class="kprim-text">Handlungsfähigkeit setzt nur Volljährigkeit voraus.</div><div class="kprim-toggles"><button class="kprim-btn" data-correct="f" onclick="tglK(this,'r')">R</button><button class="kprim-btn" data-correct="f" onclick="tglK(this,'f')">F</button></div></div>
+<div class="kprim-row"><div class="kprim-text">Gewährleistung und Garantie sind dasselbe.</div><div class="kprim-toggles"><button class="kprim-btn" data-correct="f" onclick="tglK(this,'r')">R</button><button class="kprim-btn" data-correct="f" onclick="tglK(this,'f')">F</button></div></div>
+<div class="kprim-row"><div class="kprim-text">Im Konkubinat gibt es kein gesetzliches Erbrecht.</div><div class="kprim-toggles"><button class="kprim-btn" data-correct="r" onclick="tglK(this,'r')">R</button><button class="kprim-btn" data-correct="r" onclick="tglK(this,'f')">F</button></div></div>
+</div>
+<button class="btn-check" onclick="chkK('t-kp1')">✓ Prüfen</button><button class="btn-reset" onclick="rstK('t-kp1')">↺ Reset</button>
+<div class="feedback" id="t-kp1-feedback"></div>
+</div>
+
+<div class="exercise"><div class="exercise-header"><span class="exercise-type type-fall">Frage 3 – Mini-Case</span><h4>Lena und das Budget</h4></div>
+<p>Lena verdient CHF 950.– netto. Ausgaben: Krankenkasse 180.–, Handy 49.–, ÖV 85.–, Essen 120.–, Ausgang 150.–, Kleidung 80.–, Sparen 100.–</p>
+<p style="margin-top:.5rem"><strong>a)</strong> Total Ausgaben? <input type="text" class="calc-input" data-answer="764" placeholder="CHF?"></p>
+<p style="margin-top:.3rem"><strong>b)</strong> Rest pro Monat? <input type="text" class="calc-input" data-answer="186" placeholder="CHF?"></p>
+<p style="margin-top:.5rem"><strong>c)</strong> Lena will ein Velo für CHF 800.–. Wie viele Monate muss sie bei CHF 100.–/Mt. sparen?</p>
+<textarea class="open-textarea" rows="2" placeholder="Berechnung..."></textarea>
+<button class="btn-check" onclick="showSol('sol-test')">💡 Lösung</button>
+<div class="feedback info" id="sol-test"><strong>a)</strong> 180+49+85+120+150+80+100 = CHF 764.– <strong>b)</strong> 950−764 = CHF 186.– <strong>c)</strong> 800 ÷ 100 = 8 Monate. Mit den CHF 186.– «Rest» könnte sie sogar schneller sparen!</div>
+</div>
+
+<div class="chapter-complete" id="finalMsg" style="display:none">
+<h3>🎉 T1 abgeschlossen!</h3>
+<p style="margin-top:.5rem">Du hast <strong><span id="finalScore">0</span> Punkte</strong> gesammelt. Vergiss nicht, deine Portfolio-Aufträge abzugeben!</p>
+<p style="margin-top:.5rem;color:var(--text-muted)">Nächstes Thema: <strong>T2 – Ich wähle Mobilitätsformen bewusst</strong></p>
+</div>
+</div>
+
+<!-- ═══ LP LÖSUNGEN ═══ -->
+<details class="lp-toggle">
+<summary>🔐 Bereich Lehrpersonen (Lösungen & Hinweise)</summary>
+<div class="lp-content">
+<p><strong>Lückentext Personenrecht:</strong> Geburt – Volljährigkeit – Urteilsfähigkeit – 18 – beschränkt</p>
+<p><strong>Lückentext Lehrvertrag:</strong> befristeter – 1 – 3 – 7 – 5</p>
+<p><strong>Lohnberechnung:</strong> AHV/IV/EO = 53.– | ALV = 11.– | NBU = 15.– | Netto = 921.–</p>
+<p><strong>K-Prim Berufsperson:</strong> F – R – F (Überstunden sind eingeschränkt, aber nicht gänzlich verboten) – R</p>
+<p><strong>K-Prim Lehrvertrag:</strong> R – F – R – F</p>
+<p><strong>K-Prim Partnerschaft:</strong> F – R – R – R</p>
+<p><strong>Fall Personenrecht A:</strong> Ja, alltägliche Geschäfte mit eigenem Geld erlaubt (ZGB Art. 19 Abs. 2)</p>
+<p><strong>Fall Personenrecht B:</strong> Nein, laufende Verpflichtung → Zustimmung gesetzliche Vertretung nötig</p>
+<p><strong>Fall Familie Meier:</strong> Scheidung auf gemeinsames Begehren | Gemeinsames Sorgerecht | Errungenschaft = hälftig geteilt</p>
+<p><strong>Budgetaufgabe:</strong> Total 764.– | Rest 186.– | Velo: 8 Monate (800÷100)</p>
+</div>
+</details>
+
+</div>
+
+<div class="score-panel"><span>⭐</span><span class="score-num" id="score">0</span><span style="color:var(--text-muted);font-size:.8rem">Punkte</span></div>
+
+<script>
+// NAV
+const sections=['intro','bildung','beruf','persrecht','lehrvertrag','lohn','kaufvertrag','partnerschaft','familie','glossar','test'];
+const visited=new Set(['intro']);
+document.querySelectorAll('.nav-pill').forEach(p=>p.addEventListener('click',()=>goTo(p.dataset.s)));
+
+function goTo(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-pill').forEach(p=>{p.classList.remove('active');if(p.dataset.s===id)p.classList.add('active')});
+  visited.add(id);
+  updateProgress();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function updateProgress(){
+  const pct=Math.round(visited.size/sections.length*100);
+  document.getElementById('progressFill').style.width=pct+'%';
+  document.getElementById('progressText').textContent=visited.size+' / '+sections.length+' Kapitel';
+  document.querySelectorAll('.nav-pill').forEach(p=>{if(visited.has(p.dataset.s)&&!p.classList.contains('active'))p.classList.add('completed')});
+  if(visited.size===sections.length){document.getElementById('finalMsg').style.display='block';document.getElementById('finalScore').textContent=score}
+}
+
+// SCORE
+let score=0;
+function addPts(n){score+=n;const el=document.getElementById('score');el.textContent=score;el.style.transform='scale(1.3)';setTimeout(()=>el.style.transform='scale(1)',300)}
+
+// GAP FILL
+function chkGap(btn){const ex=btn.closest('.exercise'),inps=ex.querySelectorAll('.gap-input');let c=0;inps.forEach(i=>{const a=i.dataset.answer.toLowerCase().trim(),v=i.value.toLowerCase().trim();if(v===a){i.classList.add('correct');i.classList.remove('wrong');c++}else{i.classList.add('wrong');i.classList.remove('correct')}});const fb=ex.querySelector('.feedback');if(c===inps.length){fb.className='feedback show correct';fb.innerHTML='✅ Alles richtig! +'+c;addPts(c)}else{fb.className='feedback show wrong';fb.innerHTML='❌ '+c+'/'+inps.length+' richtig.'}}
+function rstGap(btn){const ex=btn.closest('.exercise');ex.querySelectorAll('.gap-input').forEach(i=>{i.value='';i.classList.remove('correct','wrong')});const fb=ex.querySelector('.feedback');fb.className='feedback'}
+
+// MC
+function selMC(el,gid){document.getElementById(gid).querySelectorAll('.mc-option').forEach(o=>o.classList.remove('selected'));el.classList.add('selected')}
+function chkMC(gid){const g=document.getElementById(gid),s=g.querySelector('.mc-option.selected'),fb=document.getElementById(gid+'-feedback');if(!s){fb.className='feedback show info';fb.innerHTML='⚠️ Bitte wähle eine Antwort.';return}g.querySelectorAll('.mc-option').forEach(o=>{if(o.dataset.correct==='true')o.classList.add('correct-answer');if(o.classList.contains('selected')&&o.dataset.correct!=='true')o.classList.add('wrong-answer')});if(s.dataset.correct==='true'){fb.className='feedback show correct';fb.innerHTML='✅ Richtig!';addPts(1)}else{fb.className='feedback show wrong';fb.innerHTML='❌ Falsch. Richtige Antwort ist grün markiert.'}}
+function rstMC(gid){document.getElementById(gid).querySelectorAll('.mc-option').forEach(o=>o.classList.remove('selected','correct-answer','wrong-answer'));document.getElementById(gid+'-feedback').className='feedback'}
+
+// K-PRIM
+function tglK(btn,t){const tg=btn.parentElement;tg.querySelectorAll('.kprim-btn').forEach(b=>b.classList.remove('sel-r','sel-f'));btn.classList.add(t==='r'?'sel-r':'sel-f')}
+function chkK(gid){const g=document.getElementById(gid),rows=g.querySelectorAll('.kprim-row');let c=0;rows.forEach(r=>{const bs=r.querySelectorAll('.kprim-btn'),rB=bs[0],fB=bs[1],cor=rB.dataset.correct,sR=rB.classList.contains('sel-r'),sF=fB.classList.contains('sel-f');bs.forEach(b=>b.classList.remove('ok','nok'));if((cor==='r'&&sR)||(cor==='f'&&sF)){c++;if(sR)rB.classList.add('ok');if(sF)fB.classList.add('ok')}else{if(cor==='r'){rB.classList.add('ok');if(sF)fB.classList.add('nok')}if(cor==='f'){fB.classList.add('ok');if(sR)rB.classList.add('nok')}}});const fb=document.getElementById(gid+'-feedback');if(c===rows.length){fb.className='feedback show correct';fb.innerHTML='✅ Alle '+c+' richtig!';addPts(c)}else{fb.className='feedback show wrong';fb.innerHTML='❌ '+c+'/'+rows.length+' richtig.'}}
+function rstK(gid){document.getElementById(gid).querySelectorAll('.kprim-btn').forEach(b=>b.classList.remove('sel-r','sel-f','ok','nok'));document.getElementById(gid+'-feedback').className='feedback'}
+
+// ZUORDNUNG
+const zSt={};
+function selZ(el,side,gid){if(el.classList.contains('matched'))return;if(!zSt[gid])zSt[gid]={};const s=zSt[gid],c=document.getElementById(gid);c.querySelectorAll('.zuordnung-'+side+' .zuordnung-item').forEach(i=>i.classList.remove('selected'));el.classList.add('selected');s[side]=el;if(s.left&&s.right){if(s.left.dataset.pair===s.right.dataset.pair){s.left.classList.remove('selected');s.left.classList.add('matched');s.right.classList.remove('selected');s.right.classList.add('matched');addPts(1)}else{s.left.classList.remove('selected');s.right.classList.remove('selected')}s.left=null;s.right=null;if(c.querySelectorAll('.zuordnung-item').length===c.querySelectorAll('.matched').length){document.getElementById(gid+'-feedback').className='feedback show correct';document.getElementById(gid+'-feedback').innerHTML='✅ Alles zugeordnet!'}}}
+
+// CALC
+function chkCalc(ids,ans){let c=0;ids.forEach((id,i)=>{const el=document.getElementById(id),v=parseFloat(el.value.replace(/[^0-9.,]/g,'').replace(',','.'));if(Math.abs(v-ans[i])<1){el.classList.add('correct');el.classList.remove('wrong');c++}else{el.classList.add('wrong');el.classList.remove('correct')}});const fb=document.getElementById('calc1-feedback');if(c===ids.length){fb.className='feedback show correct';fb.innerHTML='✅ Perfekt!';addPts(4)}else{fb.className='feedback show wrong';fb.innerHTML='❌ '+c+'/'+ids.length+' richtig.'}}
+function rstCalc(ids){ids.forEach(id=>{const el=document.getElementById(id);el.value='';el.classList.remove('correct','wrong')});document.getElementById('calc1-feedback').className='feedback'}
+
+// SHOW SOLUTION
+function showSol(id){const el=document.getElementById(id);el.classList.toggle('show')}
+</script>
+</body>
+</html>
